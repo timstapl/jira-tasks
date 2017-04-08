@@ -1,0 +1,18 @@
+{
+  "name": "jira-tasks",
+  "main": "./lib/jira-tasks",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "jira-tasks:toggle"
+  },
+  "repository": "https://github.com/atom/jira-tasks",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

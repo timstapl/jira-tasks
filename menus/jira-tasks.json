@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle jira-tasks",
+        "command": "jira-tasks:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "jira-tasks",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "jira-tasks:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
