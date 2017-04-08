@@ -1,32 +1,32 @@
 {
-  "name": "jira-tasks",
-  "main": "./lib/jira-tasks",
-  "version": "0.0.0",
-  "description": "A short description of your package",
-  "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "jira-tasks:toggle"
-  },
-  "repository": "https://github.com/atom/jira-tasks",
-  "license": "MIT",
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
-  "dependencies": {
-    "vue": "^2.2.6"
-  },
-  "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^6.4.1",
-    "babel-preset-latest": "^6.24.1",
-    "cross-env": "^4.0.0",
-    "css-loader": "^0.28.0",
-    "file-loader": "^0.11.1",
-    "node-sass": "^4.5.2",
-    "sass-loader": "^6.0.3",
-    "vue-loader": "^11.3.4",
-    "vue-template-compiler": "^2.2.6",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
-  }
+    "name": "jira-tasks",
+    "main": "./dist/package.js",
+    "version": "0.0.0",
+    "description": "Package to manage jira tasks.",
+    "keywords": [],
+    "scripts": {
+        "build": "webpack --config webpack.conf.js"
+    },
+    "repository": "https://github.com/retrocede/jira-tasks",
+    "license": "MIT",
+    "engines": {
+        "atom": ">=1.0.0 <2.0.0"
+    },
+    "dependencies": {
+        "vue": "^2.2.6"
+    },
+    "devDependencies": {
+        "babel-core": "^6.24.1",
+        "babel-loader": "^6.4.1",
+        "babel-preset-latest": "^6.24.1",
+        "cross-env": "^4.0.0",
+        "css-loader": "^0.28.0",
+        "file-loader": "^0.11.1",
+        "node-sass": "^4.5.2",
+        "sass-loader": "^6.0.3",
+        "vue-loader": "^11.3.4",
+        "vue-template-compiler": "^2.2.6",
+        "webpack": "^2.3.3",
+        "webpack-dev-server": "^2.4.2"
+    }
 }

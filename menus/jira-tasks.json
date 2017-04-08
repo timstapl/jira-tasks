@@ -3,7 +3,7 @@
     "atom-text-editor": [
       {
         "label": "Toggle jira-tasks",
-        "command": "jira-tasks:toggle"
+        "command": "jira-tasks:toggle-view"
       }
     ]
   },
@@ -16,7 +16,7 @@
           "submenu": [
             {
               "label": "Toggle",
-              "command": "jira-tasks:toggle"
+              "command": "jira-tasks:toggle-view"
             }
           ]
         }
