@@ -1,6 +1,6 @@
 <template>
     <div class="jira-tasks-view">
-        hello {{ databinding }}
+        hello, {{ databinding }}
         <br />
         <input class="native-key-bindings" tabindex="-1" v-model="databinding" />
     </div>
@@ -11,7 +11,7 @@
         width: 100%;
         height: 100%;
         border: 2px dashed black;
-        color: green;
+        color: red;
 
         input {
             color: blue;
@@ -44,7 +44,7 @@ export default{
     },
     created() {
         var element = document.createElement('div');
-        this.panel = atom.workspace.addRightPanel({
+        this.panel = atom.workspace.addModalPanel({
             item: element,
             visible: this.isVisible,
         });
