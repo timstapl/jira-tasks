@@ -5,7 +5,8 @@
     "description": "Package to manage jira tasks.",
     "keywords": [],
     "scripts": {
-        "build": "webpack --config webpack.conf.js"
+        "build": "webpack --config webpack.conf.js",
+        "dev": "webpack --config webpack.conf.js --watch"
     },
     "repository": "https://github.com/retrocede/jira-tasks",
     "license": "MIT",

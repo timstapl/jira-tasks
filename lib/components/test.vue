@@ -8,7 +8,14 @@
 
 <style lang="scss" scoped>
     .jira-tasks-view {
-        color: red;
+        width: 100%;
+        height: 100%;
+        border: 2px dashed black;
+        color: green;
+
+        input {
+            color: blue;
+        }
     }
 </style>
 
@@ -17,7 +24,7 @@ export default{
     data() {
         return {
             isVisible: false,
-            databinding: "",
+            databinding: "Retrocede",
         };
     },
     methods: {
@@ -37,7 +44,7 @@ export default{
     },
     created() {
         var element = document.createElement('div');
-        this.panel = atom.workspace.addModalPanel({
+        this.panel = atom.workspace.addRightPanel({
             item: element,
             visible: this.isVisible,
         });
