@@ -1,6 +1,8 @@
 <template>
     <div class="jira-tasks-view">
-        hello world
+        hello {{ databinding }}
+        <br />
+        <input class="native-key-bindings" tabindex="-1" v-model="databinding" />
     </div>
 </template>
 
@@ -15,11 +17,15 @@ export default{
     data() {
         return {
             isVisible: false,
+            databinding: "",
         };
     },
     methods: {
         toggle() {
             this.isVisible = !this.isVisible;
+        },
+        test() {
+            console.log("you stopped typing");
         },
     },
     watch: {
