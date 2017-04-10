@@ -55,6 +55,21 @@ export default {
         });
         this.$mount(element);
     },
+    mounted() {
+        // pull initial settings
+        this.$store.dispatch('settings/initialize');
+
+        // setup watchers on settings in case config changes
+        atom.config.observe('jira-tasks.username', username => {
+            this.$store.commit('settings/setUsername', username);
+        });
+        atom.config.observe('jira-tasks.password', password => {
+            this.$store.commit('settings/setPassword', password);
+        });
+        atom.config.observe('jira-tasks.jiraUrl', url => {
+            this.$store.commit('settings/setUrl', url);
+        });
+    },
     data() {
         return {
             isVisible: false,

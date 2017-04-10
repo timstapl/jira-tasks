@@ -3,11 +3,25 @@
 </style>
 
 <template>
-    <div> Home Page </div>
+    <div> Home Page
+        <ul>
+            <li>{{ url }}</li>
+            <li>{{ username }}</li>
+            <li>{{ password }}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex';
 
+export default {
+    computed: {
+        ...mapState('settings', {
+            url: state => state.url,
+            username: state => state.username,
+            password: state => state.password,
+        }),
+    },
 };
 </script>
