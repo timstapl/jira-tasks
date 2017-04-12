@@ -11,7 +11,7 @@
 <template>
     <div class="v-root">
         <div class="nav">
-            <router-link to="/home">Home</router-link>
+            <router-link to="/tasks">Tasks</router-link>
             <router-link to="/settings">Settings</router-link>
         </div>
         <div class="content">
