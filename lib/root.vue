@@ -12,7 +12,7 @@
     <div class="v-root">
         <div class="nav">
             <router-link to="/home">Home</router-link>
-            <router-link to="/about">About</router-link>
+            <router-link to="/settings">Settings</router-link>
         </div>
         <div class="content">
             <div class="v-router">
