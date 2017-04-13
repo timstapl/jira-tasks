@@ -6,6 +6,12 @@
 .fade-enter, .fade-leave-active {
     opacity: 0;
 }
+
+.jira-tasks-panel {
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
+}
 </style>
 
 <template>
@@ -49,6 +55,7 @@ export default {
     store,
     created() {
         var element = document.createElement('div');
+        element.className += 'jira-tasks-panel';
         this.panel = atom.workspace.addModalPanel({
             item: element,
             visible: this.isVisible,
