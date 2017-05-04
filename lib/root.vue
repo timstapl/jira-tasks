@@ -10,6 +10,7 @@
 .jira-tasks-panel {
     width: 500px;
     height: 500px;
+    max-height: 500px;
     overflow: scroll;
 }
 </style>
