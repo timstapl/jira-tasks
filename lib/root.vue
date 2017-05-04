@@ -13,6 +13,11 @@
     max-height: 500px;
     overflow: scroll;
 }
+
+.close {
+    cursor: pointer;
+    align-self: flex-end;
+}
 </style>
 
 <template>
@@ -20,6 +25,7 @@
         <div class="nav">
             <router-link to="/tasks">Tasks</router-link>
             <router-link to="/settings">Settings</router-link>
+            <i class="fa close" v-html="close_icon" @click="toggle"></i>
         </div>
         <div class="content">
             <div class="v-router">
@@ -81,6 +87,7 @@ export default {
     data() {
         return {
             isVisible: false,
+            close_icon: '&#xf00d;',
         };
     },
     methods: {

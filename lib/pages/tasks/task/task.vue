@@ -27,12 +27,20 @@
             <img :src="task.icon" />
             <div class="key">{{ task.key }}</div>
             <div class="description">{{ task.summary }}</div>
+            <i class="fa" v-html="chevron_down_icon"></i>
+            <i class="fa" v-html="chevron_up_icon"></i>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            chevron_down_icon: '&#xf13a;',
+            chevron_up_icon: '&#xf139;',
+        };
+    },
     props: {
         task: { required: true },
     },
