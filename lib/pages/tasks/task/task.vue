@@ -79,7 +79,16 @@
         </div>
         <transition name="slide" mode="out-in">
             <div class="task-expanded" v-if="task.isExpanded">
-                {{ task.description }}
+                <div class="description">
+                    {{ task.description }}
+                </div>
+                <div class="transitions">
+                    <ul>
+                        <li v-for="transition in task.transitions" key="transition.id">
+                            {{ transition.name }}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </transition>
     </div>
@@ -108,9 +117,11 @@ export default {
         },
     },
     methods: {
-        ...mapMutations('tasks', {
-            toggleExpand: 'toggleExpanded',
-        }),
+        toggleExpand(task) {
+            this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
+                this.$store.commit('tasks/toggleExpanded', task);
+            });
+        }
     },
 }
 </script>
