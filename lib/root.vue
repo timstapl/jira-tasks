@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s ease;
 }
@@ -6,7 +6,9 @@
 .fade-enter, .fade-leave-active {
     opacity: 0;
 }
+</style>
 
+<style lang="scss" scoped>
 .jira-tasks-panel {
     width: 500px;
     height: 500px;
