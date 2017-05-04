@@ -84,7 +84,7 @@
                 </div>
                 <div class="transitions">
                     <ul>
-                        <li v-for="transition in task.transitions" key="transition.id">
+                        <li @click="executeTransition(transition, task)" v-for="transition in task.transitions" key="transition.id">
                             {{ transition.name }}
                         </li>
                     </ul>
@@ -121,7 +121,10 @@ export default {
             this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
                 this.$store.commit('tasks/toggleExpanded', task);
             });
-        }
+        },
+        executeTransition(transition, task) {
+            this.$store.dispatch('tasks/transitionTask', { task, transition});
+        },
     },
 }
 </script>
