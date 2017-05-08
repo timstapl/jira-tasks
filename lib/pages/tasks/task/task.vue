@@ -67,7 +67,6 @@
     margin-bottom: 10px;
 
     .task-status {
-        display: flex;
         min-width: 100px;
         max-width: 100px;
         margin-left: 15px;
@@ -84,22 +83,56 @@
         }
     }
 
+
+    .task-transition.yellow,
     .task-status.yellow {
         background-color: #FFD351;
         border-color: #FFD351;
         color: #594300;
     }
 
+    .task-transition.blue-gray,
     .task-status.blue-gray {
         background-color: #4A6785;
         border-color: #4A6785;
         color: #FFF;
     }
 
+    .task-transition.green,
     .task-status.green {
         background-color: #14892C;
         border-color: #14892C;
         color: #FFF;
+    }
+
+    .task-transitions {
+        position: relative;
+        display: absolute;
+        width: 100%;
+        background-color: rgba(0,0,0,.5);
+        border-width: 1px;
+        margin: 0px;
+        padding: 0px;
+        z-index: 256;
+    }
+
+    .task-transition {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 10px;
+        cursor: pointer;
+
+        .transition-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
     }
 }
 
@@ -121,19 +154,25 @@
         <div class="task-meta">
             <div class="task-status" @click="toggleTransitions(task)" :class="task.status.statusCategory.colorName">
                 <div class="status-name">{{ task.status.name }}</div>
-            </div>
-            <div class="task-transitions" v-if="showingTransitions">
-                <div class="transitions">
-                    <ul>
-                        <li @click="executeTransition(transition, task)" v-for="transition in task.transitions" key="transition.id">
-                            {{ transition.name }}
-                        </li>
-                    </ul>
-                </div>
+                <transition type="fade" mode="out-in">
+                    <div class="task-transitions" v-if="showingTransitions">
+                        <div class="transitions">
+                            <div
+                            class="task-transition"
+                            :class="transition.to.statusCategory.colorName"
+                            @click="executeTransition(transition, task)"
+                            v-for="transition in task.transitions"
+                            key="transition.id">
+                                <div class="transition-name">{{ transition.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
             </div>
         </div>
         <transition name="slide" mode="out-in">
             <div class="task-expanded" v-if="task.isExpanded">
+                <hr />
                 <div class="description">
                     {{ task.description }}
                 </div>
@@ -175,7 +214,6 @@ export default {
             this.$store.dispatch('tasks/transitionTask', { task, transition});
         },
         toggleTransitions(task) {
-            // Need to fetch transitions
             this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
                 this.showingTransitions = !this.showingTransitions;
             });
