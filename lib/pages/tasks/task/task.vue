@@ -119,21 +119,23 @@
             <i v-else class="fa expand" v-html="chevron_down_icon" @click="toggleExpand(task)"></i>
         </div>
         <div class="task-meta">
-            <div class="task-status" :class="task.status.statusCategory.colorName">
+            <div class="task-status" @click="toggleTransitions(task)" :class="task.status.statusCategory.colorName">
                 <div class="status-name">{{ task.status.name }}</div>
             </div>
-        </div>
-        <transition name="slide" mode="out-in">
-            <div class="task-expanded" v-if="task.isExpanded">
-                <div class="description">
-                    {{ task.description }}
-                </div>
+            <div class="task-transitions" v-if="showingTransitions">
                 <div class="transitions">
                     <ul>
                         <li @click="executeTransition(transition, task)" v-for="transition in task.transitions" key="transition.id">
                             {{ transition.name }}
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <transition name="slide" mode="out-in">
+            <div class="task-expanded" v-if="task.isExpanded">
+                <div class="description">
+                    {{ task.description }}
                 </div>
             </div>
         </transition>
@@ -148,6 +150,7 @@ export default {
         return {
             chevron_down_icon: '&#xf13a;',
             chevron_up_icon: '&#xf139;',
+            showingTransitions: false,
         };
     },
     props: {
@@ -171,6 +174,12 @@ export default {
         executeTransition(transition, task) {
             this.$store.dispatch('tasks/transitionTask', { task, transition});
         },
+        toggleTransitions(task) {
+            // Need to fetch transitions
+            this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
+                this.showingTransitions = !this.showingTransitions;
+            });
+        }
     },
 }
 </script>
