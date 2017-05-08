@@ -12,7 +12,7 @@
 
 .slide-enter-to,
 .slide-leave {
-    height: 50px;
+    height: 200px;
     opacity: 100;
 }
 
@@ -30,6 +30,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 25px;
+    margin-top: 10px;
 
     .icon {
         margin-left: 15px;
@@ -61,7 +63,48 @@
 
 .task-meta {
     display: flex;
+    height: 25px;
+    margin-bottom: 10px;
 
+    .task-status {
+        display: flex;
+        min-width: 100px;
+        max-width: 100px;
+        margin-left: 15px;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 10px;
+        cursor: pointer;
+
+        .status-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+    }
+
+    .task-status.yellow {
+        background-color: #FFD351;
+        border-color: #FFD351;
+        color: #594300;
+    }
+
+    .task-status.blue-gray {
+        background-color: #4A6785;
+        border-color: #4A6785;
+        color: #FFF;
+    }
+
+    .task-status.green {
+        background-color: #14892C;
+        border-color: #14892C;
+        color: #FFF;
+    }
+}
+
+.task-expanded {
+    height: 200px;
 }
 </style>
 
@@ -76,6 +119,9 @@
             <i v-else class="fa expand" v-html="chevron_down_icon" @click="toggleExpand(task)"></i>
         </div>
         <div class="task-meta">
+            <div class="task-status" :class="task.status.statusCategory.colorName">
+                <div class="status-name">{{ task.status.name }}</div>
+            </div>
         </div>
         <transition name="slide" mode="out-in">
             <div class="task-expanded" v-if="task.isExpanded">
