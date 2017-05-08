@@ -18,11 +18,15 @@
         overflow-x: hidden;
         overflow-y: scroll;
     }
+    .refresh {
+        cursor: pointer;
+    }
 </style>
 
 <template>
     <div class="tasks-view">
         <div class="task-header">
+            <span class="fa refresh" @click="reloadTasks" v-html="refresh_icon"></span>
             {{ count }} tasks
         </div>
         <div class="task-list">
@@ -41,6 +45,11 @@ export default {
     components: {
         'v-task': require('./task/task'),
     },
+    data() {
+        return {
+            refresh_icon: '&#xf021;',
+        };
+    },
     computed: {
         ...mapState('tasks', {
             tasks: state => state.tasks,
@@ -49,6 +58,11 @@ export default {
         count() {
             return this.tasks.length;
         }
+    },
+    methods: {
+        reloadTasks() {
+            this.$store.dispatch('tasks/initialize');
+        },
     },
 }
 </script>
