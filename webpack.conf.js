@@ -27,7 +27,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: projectRoot,
-                // exclude: /node_modules/,
+                exclude: /node_modules/,
             },
             {
                 test: /\.vue$/,
@@ -58,14 +58,6 @@ module.exports = {
                 }
             }
         ]
-    },
-    externals: {
-        "vue": "vue",
-        "vuex": "vuex",
-        "jquery": "jquery",
-        "xterm": "xterm",
-        "esprima": "esprima",
-        "js-yaml": "js-yaml"
     },
     plugins: [
         new webpack.DefinePlugin({
