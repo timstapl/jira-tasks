@@ -118,8 +118,8 @@
 
     .task-transition {
         width: 100%;
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: 2px;
+        margin-right: 2px;
         margin-top: 5px;
         margin-bottom: 5px;
         border-width: 2px;
@@ -152,22 +152,20 @@
             <i v-else class="fa expand" v-html="chevron_down_icon" @click="toggleExpand(task)"></i>
         </div>
         <div class="task-meta">
-            <div class="task-status" @click="toggleTransitions(task)" :class="task.status.statusCategory.colorName">
+            <div class="task-status" @mouseenter="toggleTransitions(task)" @mouseleave="toggleTransitions(task)" :class="task.status.statusCategory.colorName">
                 <div class="status-name">{{ task.status.name }}</div>
-                <transition type="fade" mode="out-in">
-                    <div class="task-transitions" v-if="showingTransitions">
-                        <div class="transitions">
-                            <div
-                            class="task-transition"
-                            :class="transition.to.statusCategory.colorName"
-                            @click="executeTransition(transition, task)"
-                            v-for="transition in task.transitions"
-                            key="transition.id">
-                                <div class="transition-name">{{ transition.name}}</div>
-                            </div>
+                <div class="task-transitions" v-if="showingTransitions">
+                    <div class="transitions">
+                        <div
+                        class="task-transition"
+                        :class="transition.to.statusCategory.colorName"
+                        @click="executeTransition(transition, task)"
+                        v-for="transition in task.transitions"
+                        key="transition.id">
+                        <div class="transition-name">{{ transition.name}}</div>
                         </div>
                     </div>
-                </transition>
+                </div>
             </div>
         </div>
         <transition name="slide" mode="out-in">
@@ -214,9 +212,13 @@ export default {
             this.$store.dispatch('tasks/transitionTask', { task, transition});
         },
         toggleTransitions(task) {
-            this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
+            if (!task.transitions) {
+                this.$store.dispatch('tasks/getTaskTransitions', task).then(() => {
+                    this.showingTransitions = !this.showingTransitions;
+                });
+            } else {
                 this.showingTransitions = !this.showingTransitions;
-            });
+            }
         }
     },
 }
