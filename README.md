@@ -1,5 +1,8 @@
 # jira-tasks package
 
+## Note: I'm pausing work on this for now, looking into building a stand-alone solution instead.
+
+
 An Atom plugin for improving JIRA task visibility and reducing friction between coding and JIRA.
 
 
